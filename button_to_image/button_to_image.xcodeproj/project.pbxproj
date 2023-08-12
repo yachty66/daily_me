@@ -34,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		563029FF2A884E5F00C62958 /* button-to-image-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "button-to-image-Info.plist"; sourceTree = SOURCE_ROOT; };
 		56380F972A8820600089EE1F /* button_to_image.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = button_to_image.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56380F9A2A8820600089EE1F /* button_to_imageApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = button_to_imageApp.swift; sourceTree = "<group>"; };
 		56380F9C2A8820600089EE1F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -95,6 +96,7 @@
 		56380F992A8820600089EE1F /* button_to_image */ = {
 			isa = PBXGroup;
 			children = (
+				563029FF2A884E5F00C62958 /* button-to-image-Info.plist */,
 				56380F9A2A8820600089EE1F /* button_to_imageApp.swift */,
 				56380F9C2A8820600089EE1F /* ContentView.swift */,
 				56380F9E2A8820610089EE1F /* Assets.xcassets */,
@@ -424,6 +426,9 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "button-to-image-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = String;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -451,6 +456,9 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "button-to-image-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = String;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -1,71 +1,48 @@
 import SwiftUI
 import AVFoundation
+import AppKit
 
 struct ContentView: View {
-    @StateObject var cameraController = CameraController()
-    
     var body: some View {
         VStack {
             Image(systemName: "globe")
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Text("Click the button!")
             Button(action: {
-                cameraController.captureImage()
+                captureImage()
             }) {
                 Text("Capture Image")
             }
         }
         .padding()
     }
-}
-
-class CameraController: NSObject, NSViewControllerRepresentable, AVCapturePhotoCaptureDelegate {
-    private let captureSession = AVCaptureSession()
-    private var photoOutput = AVCapturePhotoOutput()
-    
-    override init() {
-        super.init()
-        setupCaptureSession()
-    }
-    
-    func makeNSViewController(context: Context) -> NSViewController {
-        let viewController = NSViewController()
-        let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        viewController.view.layer?.addSublayer(previewLayer)
-        previewLayer.frame = viewController.view.bounds
-        captureSession.startRunning()
-        return viewController
-    }
-    
-    func updateNSViewController(_ nsViewController: NSViewController, context: Context) {
-        // Update the view controller if needed
-    }
-    
-    private func setupCaptureSession() {
-        guard let captureDevice = AVCaptureDevice.default(.builtInTrueDepthCamera, for: .video, position: .front) else {
-            print("Failed to get the camera device")
-            return
-        }
-        
-        do {
-            let input = try AVCaptureDeviceInput(device: captureDevice)
-            captureSession.addInput(input)
-            captureSession.addOutput(photoOutput)
-        } catch {
-            print(error)
-        }
-    }
     
     func captureImage() {
-        let photoSettings = AVCapturePhotoSettings()
-        photoOutput.capturePhoto(with: photoSettings, delegate: self)
+        let captureSession = AVCaptureSession()
+        guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
+        guard let input = try? AVCaptureDeviceInput(device: captureDevice) else { return }
+        captureSession.addInput(input)
+        captureSession.startRunning()
+        
+        let output = AVCapturePhotoOutput()
+        captureSession.addOutput(output)
+        
+        let settings = AVCapturePhotoSettings()
+        output.capturePhoto(with: settings, delegate: PhotoCaptureDelegate())
     }
-    
+}
+
+class PhotoCaptureDelegate: NSObject, AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        if let imageData = photo.fileDataRepresentation() {
-            // Here you can use the captured image data
-            print("Image captured!")
-        }
+        guard let imageData = photo.fileDataRepresentation() else { return }
+        guard let image = NSImage(data: imageData) else { return }
+    // Save the image to your desired location here
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
     }
 }
