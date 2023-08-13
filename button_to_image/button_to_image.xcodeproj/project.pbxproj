@@ -14,6 +14,7 @@
 		56380FAD2A8820610089EE1F /* button_to_imageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56380FAC2A8820610089EE1F /* button_to_imageTests.swift */; };
 		56380FB72A8820610089EE1F /* button_to_imageUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56380FB62A8820610089EE1F /* button_to_imageUITests.swift */; };
 		56380FB92A8820610089EE1F /* button_to_imageUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56380FB82A8820610089EE1F /* button_to_imageUITestsLaunchTests.swift */; };
+		56F7E7E42A88E7FF00EF7703 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F7E7E32A88E7FF00EF7703 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		56380FB22A8820610089EE1F /* button_to_imageUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = button_to_imageUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		56380FB62A8820610089EE1F /* button_to_imageUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = button_to_imageUITests.swift; sourceTree = "<group>"; };
 		56380FB82A8820610089EE1F /* button_to_imageUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = button_to_imageUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		56F7E7E32A88E7FF00EF7703 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56F7E7E42A88E7FF00EF7703 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +83,7 @@
 				56380FAB2A8820610089EE1F /* button_to_imageTests */,
 				56380FB52A8820610089EE1F /* button_to_imageUITests */,
 				56380F982A8820600089EE1F /* Products */,
+				56F7E7E22A88E7FF00EF7703 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,6 +133,14 @@
 				56380FB82A8820610089EE1F /* button_to_imageUITestsLaunchTests.swift */,
 			);
 			path = button_to_imageUITests;
+			sourceTree = "<group>";
+		};
+		56F7E7E22A88E7FF00EF7703 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				56F7E7E32A88E7FF00EF7703 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
