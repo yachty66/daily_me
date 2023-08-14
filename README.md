@@ -14,13 +14,7 @@ name = "DailyMe"
 identifier = "com.example.dailyme"
 icon = ["Icon.icns"]
 
-
-
-
 - [ ] make some research
-- 
-
-
 
 my goal is to create a script which is running once a day and is using my laptop camera for making an image of me. my goal is it to put it later on github so that other people can easily set it up by themselve. ideally its supporting all sorts of operating system i.e. mac and windows. how can i accomplish that?
 

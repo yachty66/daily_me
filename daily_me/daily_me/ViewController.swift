@@ -6,6 +6,9 @@ import AVFoundation
 import Cocoa
 import AppKit
 
+
+//next i want to make the app run in the background and every minute a image should be taken. the image should be saved with the current date and minute and with .jpg extension in the end
+
 class ViewController: NSViewController, AVCapturePhotoCaptureDelegate {
     // MARK: - Properties
     var previewLayer: AVCaptureVideoPreviewLayer?
@@ -15,12 +18,15 @@ class ViewController: NSViewController, AVCapturePhotoCaptureDelegate {
     var photoOutput: AVCapturePhotoOutput?
     var mouseLocation: NSPoint { NSEvent.mouseLocation }
 
+    var captureTimer: Timer?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         prepareCamera()
         startSession()
+        // Start the timer
+        captureTimer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(capturePhoto), userInfo: nil, repeats: true)
     }
     // MARK: - UtilityFunctions
     override var representedObject: Any? {
@@ -60,17 +66,25 @@ class ViewController: NSViewController, AVCapturePhotoCaptureDelegate {
         print("Error capturing photo: \(error)")
     } else if let data = photo.fileDataRepresentation() {
         let image = NSImage(data: data)
-        let savePanel = NSSavePanel()
-        savePanel.begin { (result) in
-            if result.rawValue == NSApplication.ModalResponse.OK.rawValue {
-                if let url = savePanel.url {
-                    do {
-                        try data.write(to: url)
-                    } catch {
-                        print("Error saving photo: \(error)")
-                    }
-                }
-            }
+
+        // Generate a file name based on the current date and minute
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMddHHmm"
+        let fileName = dateFormatter.string(from: Date()) + ".jpg"
+
+        // Get the user's Documents directory
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = urls[0]
+
+        // Create the full file URL
+        let fileURL = documentsDirectory.appendingPathComponent(fileName)
+        print("fileUrl")
+        print(fileURL)
+        // Save the photo
+        do {
+            try data.write(to: fileURL)
+        } catch {
+            print("Error saving photo: \(error)")
         }
     }
     }
@@ -80,12 +94,18 @@ class ViewController: NSViewController, AVCapturePhotoCaptureDelegate {
         capturePhoto()
         
     }
-    
-    func capturePhoto() {
+
+    @objc func capturePhoto() {
         print(captureConnection?.isActive)
         let photoSettings = AVCapturePhotoSettings()
         photoOutput?.capturePhoto(with: photoSettings, delegate: self)
     }
+    
+    /*func capturePhoto() {
+        print(captureConnection?.isActive)
+        let photoSettings = AVCapturePhotoSettings()
+        photoOutput?.capturePhoto(with: photoSettings, delegate: self)
+    }*/
     
     func prepareCamera() {
         photoOutput = AVCapturePhotoOutput()
